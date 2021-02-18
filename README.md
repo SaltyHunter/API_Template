@@ -56,7 +56,6 @@ Utilisation d'un fonction "transform" dans utils.ts pour indiquer l'emplacement 
     
 - Se connecter POST : http://localhost:8080/api/authenticate/signin
 
-
     {
         "username": ,
         "password":  
@@ -64,9 +63,9 @@ Utilisation d'un fonction "transform" dans utils.ts pour indiquer l'emplacement 
 
 # Profil : 
 
-- Consulter son profil GET : http://localhost:8080/api/users/${uuid}
+Consulter son profil GET : http://localhost:8080/api/users/${uuid}
 
-- Modifier son profil PUT : http://localhost:8080/api/users/${uuid}
+Modifier son profil PUT : http://localhost:8080/api/users/${uuid}
 
     {
         "username": ,
@@ -78,23 +77,22 @@ Utilisation d'un fonction "transform" dans utils.ts pour indiquer l'emplacement 
         "passwordConfirmation":
     }
 
-- Supprimer son profil DEL : http://localhost:8080/api/users/${uuid}
+Supprimer son profil DEL : http://localhost:8080/api/users/${uuid}
 
 # Template :
 
-- Consulter ses dossiers  GET : http://localhost:8080/api/users/${uuid}/template
+Consulter ses dossiers  GET : http://localhost:8080/api/users/${uuid}/template
 
-- Poster un dossier POST : http://localhost:8080/api/users/${uuid}/template
+Poster un dossier POST : http://localhost:8080/api/users/${uuid}/template
 
     {
         "name":
     }
 
-- Modifier son dossier PUT : http://localhost:8080/api/users/${uuid}/template/${id_template}
-
+Modifier son dossier PUT : http://localhost:8080/api/users/${uuid}/template/${id_template}
 
     {
         "name":
     }
     
-- Supprimer son dossier DELETE : http://localhost:8080/api/users/${uuid}/template/${id_template}
+Supprimer son dossier DELETE : http://localhost:8080/api/users/${uuid}/template/${id_template}
