@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Router } from 'express'
 import users from '@/core/controller/user'
 import templates from '@/core/controller/template'

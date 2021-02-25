@@ -12,8 +12,25 @@
 - Sendgrid
 - Passport
 - Types
+
 ...
 
+# Installation
+
+Une fois le répo cloné, faite un :
+
+        yarn install
+    
+# Lancement 
+
+Pour les phases de développement
+
+        yarn dev
+    
+Pour la version final
+
+        yarn start
+    
 # Configuration du .env
 
 HOST=
@@ -42,7 +59,7 @@ Utilisation d'un fonction "transform" dans utils.ts pour indiquer l'emplacement 
 
 # Authentification : 
 
-- S'inscrire POST : http://localhost:8080/api/authenticate/signup
+S'inscrire POST : http://localhost:8080/api/authenticate/signup
 
     {
         "username": ,
@@ -54,7 +71,7 @@ Utilisation d'un fonction "transform" dans utils.ts pour indiquer l'emplacement 
         "passwordConfirmation":
     }
     
-- Se connecter POST : http://localhost:8080/api/authenticate/signin
+Se connecter POST : http://localhost:8080/api/authenticate/signin
 
     {
         "username": ,
@@ -96,3 +113,21 @@ Modifier son dossier PUT : http://localhost:8080/api/users/${uuid}/template/${id
     }
     
 Supprimer son dossier DELETE : http://localhost:8080/api/users/${uuid}/template/${id_template}
+
+
+# Eslint
+
+Le module de eslint n'est pas utilisé (voir le fichier eslint.js qui est en unused), un template est déjà existant.
+
+# NB des modules à mettre à jour
+
+warning mjml > mjml-core > juice > cheerio > cheerio-select-tmp@0.1.1: Use cheerio-select instead
+
+warning @babel/cli > @nicolo-ribaudo/chokidar-2 > braces > snapdragon > source-map-resolve > resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+
+warning @babel/cli > @nicolo-ribaudo/chokidar-2 > braces > snapdragon > source-map-resolve > urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+
+warning @types/dotenv@8.2.0: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
+
+warning @types/moment@2.13.0: This is a stub types definition for Moment (https://github.com/moment/moment). Moment provides its own type definitions, so you don't need @types/moment installed!
+

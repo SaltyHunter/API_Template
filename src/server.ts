@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import express, { Express } from 'express'
 import bodyParser from 'body-parser'
 import passport from 'passport'
@@ -12,7 +11,7 @@ import { transform } from '@/core/libs/utils'
 
 const file = transform(__filename)
 const logger = getLogger(file)
-const log = factory.getLogger("server.ts");
+const log = factory.getLogger('server.ts')
 
 export default class Server {
   private _host: string
@@ -30,12 +29,12 @@ export default class Server {
     try {
       await db.authenticate()
     } catch (err) {
-      logger.error(err.message);
-      log.error(err.message);
+      logger.error(err.message)
+      log.error(err.message)
       process.exit(-1)
     }
-    logger.info('Connexion à la base de donnée établie');
-    log.info('Connexion à la donnée établie');
+    logger.info('Connexion à la base de donnée établie')
+    log.info('Connexion à la donnée établie')
 
     this._app = express()
 
@@ -50,8 +49,8 @@ export default class Server {
   public async run(): Promise<void> {
     await this._initialize()
     this._app?.listen(this._port, () => {
-      logger.info(`Le serveur écoute sur : ${this._host}:${this._port}`);
-      log.info(`Le serveur écoute sur : ${this._host}:${this._port}`);
+      logger.info(`Le serveur écoute sur : ${this._host}:${this._port}`)
+      log.info(`Le serveur écoute sur : ${this._host}:${this._port}`)
     })
   }
 }

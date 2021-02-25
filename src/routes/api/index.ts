@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Router, Request, Response } from 'express'
 import auth from '@/core/controller/authenticate'
 import secured from '@/routes/api/secured'

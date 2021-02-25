@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Router, Request, Response } from 'express'
 import { error, success } from '@/core/helpers/response'
 import { BAD_REQUEST, OK } from '@/core/constants/api'

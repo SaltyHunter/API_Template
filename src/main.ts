@@ -1,19 +1,17 @@
-/* eslint-disable prettier/prettier */
 import 'reflect-metadata'
 import { argv, prelude } from '@/core/libs/utils'
-import Server from '@/core/server'
+import Server from './server'
 import dotenv from 'dotenv'
 import { factory } from '@/core/libs/log'
 import { getLogger } from 'log4js'
 import { transform } from '@/core/libs/utils'
 
-
 const file = transform(__filename)
 const logger = getLogger(file)
-const log = factory.getLogger("main.ts");
+const log = factory.getLogger('main.ts')
 
 const main = async (): Promise<void> => {
-  try{
+  try {
     prelude()
 
     dotenv.config()

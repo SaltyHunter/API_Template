@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Router, Request, Response } from 'express'
 import { isEmpty } from 'lodash'
 import { error, success } from '@/core/helpers/response'

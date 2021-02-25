@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Router, Request, Response } from 'express'
 import { isEmpty } from 'lodash'
 import { error, success } from '../../core/helpers/response'
@@ -15,7 +14,7 @@ const file = transform(__filename)
 const logger = getLogger(file)
 
 // à mettre à jour avec le transform
-const log = factory.getLogger("authenticate.ts");
+const log = factory.getLogger('authenticate.ts')
 
 const api = Router()
 api.post('/signup', async (req: Request, res: Response) => {
@@ -48,13 +47,13 @@ api.post('/signup', async (req: Request, res: Response) => {
     const token = jwt.sign(payload, process.env.JWT_ENCRYPTION as string)
     res.status(CREATED.status).json(success(user, { token }))
     await sendConfirmation(mail, { username })
-    logger.info("Création de l'utilisateur "+user.id)
-    log.info("Création de l'utilisateur "+user.id)
+    logger.info("Création de l'utilisateur " + user.id)
+    log.info("Création de l'utilisateur " + user.id)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
     logger.error(err.message)
-    log.error(err.message) 
-    }
+    log.error(err.message)
+  }
 })
 
 api.post('/signin', async (req: Request, res: Response) => {
@@ -67,12 +66,12 @@ api.post('/signin', async (req: Request, res: Response) => {
       const payload = { id: user.id, username: user.username }
       const token = jwt.sign(payload, process.env.JWT_ENCRYPTION as string)
       res.status(OK.status).json(success(user, { token }))
-      logger.info("Connexion de l'utilisateur "+user.id)
-      log.info("Connexion de l'utilisateur "+user.id)
-      } catch (err) {
-        res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-        logger.error(err.message)
-        log.error(err.message)
+      logger.info("Connexion de l'utilisateur " + user.id)
+      log.info("Connexion de l'utilisateur " + user.id)
+    } catch (err) {
+      res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+      logger.error(err.message)
+      log.error(err.message)
     }
   })
   authenticate(req, res)

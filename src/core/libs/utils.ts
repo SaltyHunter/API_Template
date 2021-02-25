@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import path from 'path'
 import dotenv from 'dotenv'
 import { isEmpty } from 'lodash'
@@ -20,17 +19,17 @@ export function prelude(): void | never {
     const missingValues = appConfig.env.filter((key: string) => process.env[key] === undefined)
     if (!isEmpty(missingValues)) {
       //throw new Error(`Sorry [ ${missingValues.join(', ')}] value(s) are missings on your .env file`)
-      logger.error(`Sorry [ ${missingValues.join(', ')}] value(s) are missings on your .env file`)
-      log.error(`Sorry [ ${missingValues.join(', ')}] value(s) are missings on your .env file`)
+      logger.error(`Les [ ${missingValues.join(', ')}] valeurs ne sont pas présent dans le fichier .env`)
+      log.error(`Les [ ${missingValues.join(', ')}] valeurs ne sont pas présent dans le fichier .env`)
     }
   } else {
     //throw new Error('Sorry your .env file is missing')
-    logger.error('Sorry your .env file is missing')
-    log.error('Sorry your .env file is missing')
+    logger.error("Aucun fichier .env n'a été trouvé")
+    log.error("Aucun fichier .env n'a été trouvé")
   }
 }
 
-export function transform(string:String) {
+export function transform(string:string) {
   const file = string.split("/");
   const filename = file.pop();
   return filename

@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {LoggerFactoryOptions, LFService, LogGroupRule, LogLevel} from "typescript-logging";
  
 // Create options instance and specify 2 LogGroupRules:
