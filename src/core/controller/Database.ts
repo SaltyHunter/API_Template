@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import { createConnection, Connection } from 'typeorm'
-import User from './User'
-import Template from './Template'
+import User from '@/core/models/User'
+import Template from '@/core/models/Template'
 
 export default class Database {
   private static _instance: Database | null = null
