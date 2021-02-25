@@ -2,7 +2,6 @@ import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import dotenv from 'dotenv'
-
 import User from '@/core/models/User'
 
 dotenv.config()
@@ -49,20 +48,20 @@ passport.use(
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: process.env.JWT_ENCRYPTION as string,
     },
-    async (jwtPayload, next) => {
+    async (jwtPayload: { id: string }, next: (arg0: string | null, arg1: User | undefined) => void) => {
       try {
         const { id } = jwtPayload
 
         const user = await User.findOne({ where: { id } })
 
         if (!user) {
-          next(`User ${id} doesn't exist`)
+          next(`L'utilisateur ${id} n'existe pas`, undefined)
           return
         }
 
         next(null, user)
       } catch (err) {
-        next(err.message)
+        next(err.message, undefined)
       }
     }
   )

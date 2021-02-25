@@ -1,4 +1,4 @@
-## Template d'API Version 1.0.0
+## Template d'API Version 1.1.0
 
 # Modules utilisés :
 
@@ -51,7 +51,10 @@ Envoie de mail lors de la création d'un utilisateur, et suppression d'un utilis
 
 - Configuration des logs sur le terminal de commande via log.ts
 
-- Configuration du fichier de log (/log/api.log) via log4j.ts
+- Configuration du dossier de logs (/logs) via log4j.ts contenant :
+    - ERROR.log
+    - INFO.log
+    ...
 
 Utilisation d'un fonction "transform" dans utils.ts pour indiquer l'emplacement de l'info, erreur etc...
 
@@ -115,6 +118,9 @@ Modifier son dossier PUT : http://localhost:8080/api/users/${uuid}/template/${id
 Supprimer son dossier DELETE : http://localhost:8080/api/users/${uuid}/template/${id_template}
 
 
+# EN COURS :
+
+Ajout d'un template pour l'orm : Prisma
 
 # NB des modules à mettre à jour
 
@@ -127,7 +133,5 @@ warning @babel/cli > @nicolo-ribaudo/chokidar-2 > braces > snapdragon > source-m
 warning @types/dotenv@8.2.0: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
 
 warning @types/moment@2.13.0: This is a stub types definition for Moment (https://github.com/moment/moment). Moment provides its own type definitions, so you don't need @types/moment installed!
-
-passport.ts : pas à jour avec la version du module jwt (aucun problème dans le fonctionnement)
 
 User.ts : delete json.password, même si la ligne est surligné fonctionnement ok, le mot de passe n'est pas envoyé dans le JSON

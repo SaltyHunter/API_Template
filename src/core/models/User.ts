@@ -4,7 +4,6 @@ import {
   Column,
   BaseEntity,
   CreateDateColumn,
-  UpdateDateColumn,
   BeforeInsert,
   BeforeUpdate,
   OneToMany,
@@ -38,9 +37,6 @@ export default class User extends BaseEntity {
   @CreateDateColumn()
   createdAt!: string
 
-  @UpdateDateColumn()
-  updatedAt!: string
-
   @OneToMany(() => Template, (template: Template) => template.user)
   template!: Template[]
   
@@ -51,7 +47,7 @@ export default class User extends BaseEntity {
   @BeforeUpdate()
   public hashPassword(): void | never {
     if (!this.password) {
-      throw new Error('Password is not defined')
+      throw new Error('Mot de passe non défini')
     }
 
     this.password = bcrypt.hashSync(this.password)
@@ -66,7 +62,9 @@ export default class User extends BaseEntity {
 
   public toJSON(): User {
     const json: User = Object.assign({}, this)
+
     delete json.password
+
     return json
   }
 }

@@ -10,9 +10,7 @@ import { transform } from '@/core/libs/utils'
 
 const file = transform(__filename)
 const logger = getLogger(file)
-
-// à mettre à jour avec le transform
-const log = factory.getLogger("user.ts");
+const log = factory.getLogger(file)
 const api = Router()
 
 api.get('/:id', async (req: Request, res: Response) => {

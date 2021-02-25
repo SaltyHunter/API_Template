@@ -1,7 +1,7 @@
 import express, { Express } from 'express'
 import bodyParser from 'body-parser'
 import passport from 'passport'
-import Database from '@/core/models/Database'
+import database from '@/core/controller/database'
 import '@/core/middlewares/passport'
 import api from '@/routes/api'
 import cors from 'cors'
@@ -9,9 +9,9 @@ import { factory } from '@/core/libs/log'
 import { getLogger } from 'log4js'
 import { transform } from '@/core/libs/utils'
 
-const file = transform(__filename)
+const file  = transform(__filename)
 const logger = getLogger(file)
-const log = factory.getLogger('server.ts')
+const log = factory.getLogger(file)
 
 export default class Server {
   private _host: string
@@ -24,7 +24,7 @@ export default class Server {
   }
 
   private async _initialize(): Promise<void> {
-    const db = Database.getInstance()
+    const db = database.getInstance()
 
     try {
       await db.authenticate()
@@ -34,7 +34,7 @@ export default class Server {
       process.exit(-1)
     }
     logger.info('Connexion à la base de donnée établie')
-    log.info('Connexion à la donnée établie')
+    log.info('Connexion à la base de donnée établie')
 
     this._app = express()
 

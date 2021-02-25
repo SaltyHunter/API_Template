@@ -8,7 +8,7 @@ import { transform } from '@/core/libs/utils'
 
 const file = transform(__filename)
 const logger = getLogger(file)
-const log = factory.getLogger('main.ts')
+const log = factory.getLogger(file)
 
 const main = async (): Promise<void> => {
   try {

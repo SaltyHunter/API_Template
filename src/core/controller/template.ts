@@ -10,10 +10,7 @@ import { transform } from '@/core/libs/utils'
 
 const file = transform(__filename)
 const logger = getLogger(file)
-
-// à mettre à jour avec le transform
-const log = factory.getLogger("template.ts");
-
+const log = factory.getLogger(file)
 const api = Router({ mergeParams: true })
 
 api.get('/', async (req: Request, res: Response) => {

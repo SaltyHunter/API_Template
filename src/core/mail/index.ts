@@ -2,8 +2,6 @@
 import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
 import confirmation from './templates/confirmation';
-import passwordReset from './templates/pwReset';
-import passwordModif from './templates/pwModif';
 import suppression from './templates/suppression';
 
 
@@ -42,20 +40,6 @@ export async function sendConfirmation(
     return send(to, 'AssurSafe, compte créé', confirmation(options));
 }
 
-export async function sendPasswordReset(
-    to: string,
-    options: { username: string; token: string },
-): Promise<boolean> {
-    return send(to, 'AssurSafe, réinitialisez votre mot de passe', passwordReset(options));
-}
-
-export async function sendPasswordModif(
-    to: string,
-    options: { username: string },
-): Promise<boolean> {
-    return send(to, 'AssurSafe, votre mot de passe a bien été changé', passwordModif(options));
-}
-
 export async function sendSuppression(
     to: string,
     options: { username: string },
@@ -66,7 +50,5 @@ export async function sendSuppression(
 export default {
     send,
     sendConfirmation,
-    sendPasswordReset,
-    sendPasswordModif,
     sendSuppression
 };

@@ -1,7 +1,7 @@
 import path from 'path'
 import dotenv from 'dotenv'
 import { isEmpty } from 'lodash'
-import { existsSync } from 'fs'
+import { existsSync, promises } from 'fs'
 import { factory } from '@/core/libs/log'
 import { logger } from '@/core/libs/log4j'
 
@@ -31,8 +31,13 @@ export function prelude(): void | never {
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function transform(string:string) {
+export function transform(string:string){
   const file = string.split("/");
-  const filename = file.pop();
-  return filename
+  let filename = file.pop();
+  if (filename !== undefined) {
+    return filename
+  } 
+  else {
+    return filename = 'default'
+  }
 }

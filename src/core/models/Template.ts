@@ -4,14 +4,13 @@ import {
   Column,
   BaseEntity,
   CreateDateColumn,
-  UpdateDateColumn,
   ManyToOne,
   JoinColumn,
 } from 'typeorm'
 import User from './User'
 
 @Entity()
-export default class Dossier extends BaseEntity {
+export default class Template extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: string
 
@@ -24,9 +23,6 @@ export default class Dossier extends BaseEntity {
   @CreateDateColumn()
   createdAt!: string
 
-  @UpdateDateColumn()
-  updatedAt!: string
-
   @ManyToOne(() => User, (user: User) => user.template, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user!: User
@@ -38,7 +34,7 @@ export default class Dossier extends BaseEntity {
   /**
    * Methods
    */
-  public toJSON(): Dossier {
+  public toJSON(): Template {
     const json = Object.assign({}, this)
 
     return json
