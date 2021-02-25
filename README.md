@@ -128,3 +128,6 @@ warning @types/dotenv@8.2.0: This is a stub types definition. dotenv provides it
 
 warning @types/moment@2.13.0: This is a stub types definition for Moment (https://github.com/moment/moment). Moment provides its own type definitions, so you don't need @types/moment installed!
 
+passport.ts : pas à jour avec la version du module jwt (aucun problème dans le fonctionnement)
+
+User.ts : delete json.password, même si la ligne est surligné fonctionnement ok, le mot de passe n'est pas envoyé dans le JSON

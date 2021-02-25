@@ -11,6 +11,7 @@ export const argv: string[] = process.argv.slice(2)
 
 export function prelude(): void | never {
   const envPathName = path.join(process.cwd(), '.env')
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const appConfig = require(path.join(process.cwd(), 'app.config.json'))
 
   if (process.env.NODE_ENV === 'production' || existsSync(envPathName)) {
@@ -29,6 +30,7 @@ export function prelude(): void | never {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function transform(string:string) {
   const file = string.split("/");
   const filename = file.pop();
