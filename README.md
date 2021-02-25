@@ -115,9 +115,6 @@ Modifier son dossier PUT : http://localhost:8080/api/users/${uuid}/template/${id
 Supprimer son dossier DELETE : http://localhost:8080/api/users/${uuid}/template/${id_template}
 
 
-# Eslint
-
-Le module de eslint n'est pas utilisé (voir le fichier eslint.js qui est en unused), un template est déjà existant.
 
 # NB des modules à mettre à jour
 

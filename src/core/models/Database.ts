@@ -7,7 +7,7 @@ export default class Database {
   private static _instance: Database | null = null
   private _connection: Connection | null = null
 
-  private constructor() {}
+  // private constructor() {}
 
   public static getInstance(): Database {
     if (!Database._instance) {
