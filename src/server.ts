@@ -1,7 +1,7 @@
 import express, { Express } from 'express'
 import bodyParser from 'body-parser'
 import passport from 'passport'
-import database from '@/core/controller/database'
+import database from '@/core/controller/Database'
 import '@/core/middlewares/passport'
 import api from '@/routes/api'
 import cors from 'cors'

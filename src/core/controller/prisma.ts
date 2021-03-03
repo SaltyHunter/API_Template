@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client'
 import { factory } from '@/core/libs/log'
-//import { getLogger } from 'log4js'
+import { getLogger } from 'log4js'
 import { transform } from '@/core/libs/utils'
 
 const file = transform(__filename)
-//const logger = getLogger(file)
+const logger = getLogger(file)
 const log = factory.getLogger(file)
 
 const prisma = new PrismaClient()

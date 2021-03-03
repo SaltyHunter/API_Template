@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express'
 import { error, success } from '../../core/helpers/response'
 import { BAD_REQUEST, CREATED, OK } from '../../core/constants/api'
 import jwt from 'jsonwebtoken'
-import User from '../../core/models/User'
+import User from '@/core/models/User'
 import passport from 'passport'
 import { sendConfirmation } from '@/core/mail'
 import { factory } from '@/core/libs/log'
@@ -38,8 +38,8 @@ api.post('/signup', async (req: Request, res: Response) => {
     log.info("Création de l'utilisateur " + user.id)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error(err.message)
-    log.error(err.message)
+    logger.error("impposible de créer l'utilisateur car "+err.message)
+    log.error("impposible de créer l'utilisateur car "+err.message)
   }
 })
 
@@ -48,6 +48,8 @@ api.post('/signin', async (req: Request, res: Response) => {
     try {
       if (errorMessage) {
         res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, new Error(errorMessage)))
+        logger.error("Connexion impossible car "+errorMessage)
+        log.error("Connexion impossible car "+errorMessage)
         return
       }
       const payload = { id: user.id, username: user.username }
@@ -57,8 +59,6 @@ api.post('/signin', async (req: Request, res: Response) => {
       log.info("Connexion de l'utilisateur " + user.id)
     } catch (err) {
       res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-      logger.error(err.message)
-      log.error(err.message)
     }
   })
   authenticate(req, res)

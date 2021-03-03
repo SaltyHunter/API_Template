@@ -1,11 +1,13 @@
 import path from 'path'
 import dotenv from 'dotenv'
 import { isEmpty } from 'lodash'
-import { existsSync, promises } from 'fs'
+import { existsSync } from 'fs'
 import { factory } from '@/core/libs/log'
-import { logger } from '@/core/libs/log4j'
+import { getLogger } from 'log4js'
 
-const log = factory.getLogger('utils.ts')
+const file = transform(__filename)
+const logger = getLogger(file)
+const log = factory.getLogger(file)
 
 export const argv: string[] = process.argv.slice(2)
 
@@ -39,5 +41,14 @@ export function transform(string:string){
   } 
   else {
     return filename = 'default'
+  }
+}
+
+export function mail(mail:string | undefined) {
+  if (mail !== undefined) {
+    return mail
+  }
+  else {
+    return mail = 'patchakwak@template.api'
   }
 }

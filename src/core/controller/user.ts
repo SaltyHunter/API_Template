@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express'
 import { error, success } from '@/core/helpers/response'
 import { BAD_REQUEST, OK } from '@/core/constants/api'
-import User from '../models/User'
+import User from '@/core/models/User'
 import bcrypt from 'bcryptjs'
 import { sendSuppression } from '@/core/mail'
 import { factory } from '@/core/libs/log'

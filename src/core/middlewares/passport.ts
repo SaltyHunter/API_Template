@@ -21,12 +21,12 @@ passport.use(
         const user = await User.findOne({ username })
 
         if (!user) {
-          next(`Sorry username ${username} dosen't exist`, null)
+          next(`l'utilisateur ${username} n'existe pas`, null)
           return
         }
 
         if (!user.checkPassword(password)) {
-          next(`Sorry password is incorrect`, null)
+          next(`le mot de passe est incorrecte`, null)
           return
         }
 
@@ -55,7 +55,7 @@ passport.use(
         const user = await User.findOne({ where: { id } })
 
         if (!user) {
-          next(`L'utilisateur ${id} n'existe pas`, undefined)
+          next(`l'utilisateur ${id} n'existe pas`, undefined)
           return
         }
 

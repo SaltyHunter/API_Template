@@ -1,4 +1,4 @@
-## Template d'API Version 1.1.1
+## Template d'API Version 1.2.0
 
 # Modules utilisés :
 
@@ -43,20 +43,19 @@ JWT_ENCRYPTION=
 
 SENDGRID_API_KEY=
 
+SENDGRID_MAIL=
+
 # Gestion des mails (SENDGRID) :
 
 Envoie de mail lors de la création d'un utilisateur, et suppression d'un utilisateur.
 
 # Log (log4j):
 
-- Configuration des logs sur le terminal de commande via log.ts
-
-- Configuration du dossier de logs (/logs) via log4j.ts contenant :
+- Configuration des logs via log.ts 
+    - console
     - ERROR.log
     - INFO.log
     ...
-
-Utilisation d'un fonction "transform" dans utils.ts pour indiquer l'emplacement de l'info, erreur etc...
 
 ## Appels JSON :
 

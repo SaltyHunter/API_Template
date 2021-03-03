@@ -1,23 +1,25 @@
 /* eslint-disable prettier/prettier */
 import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
-import confirmation from './templates/confirmation';
-import suppression from './templates/suppression';
+import confirmation from '@/core/mail/templates/confirmation';
+import suppression from '@/core/mail/templates//suppression';
+import { mail } from '@/core/libs/utils'
 
 
 dotenv.config();
 const API_KEY = process.env.SENDGRID_API_KEY;
+const MAIL = mail(process.env.SENDGRIDE_MAIL);
 
 export async function send(to: string, subject: string, body: string): Promise<boolean> {
     const msg = {
         to,
-        from: 'kevin.moreau@efrei.net',
+        from: MAIL,
         subject,
         html: body,
     };
 
     if (!API_KEY) {
-        console.log('API_KEY not found');
+        console.log("l'API_KEY n'existe pas");
         return false;
     }
     sgMail.setApiKey(API_KEY);
@@ -37,14 +39,14 @@ export async function sendConfirmation(
     to: string,
     options: { username: string },
 ): Promise<boolean> {
-    return send(to, 'AssurSafe, compte créé', confirmation(options));
+    return send(to, 'Template, compte créé', confirmation(options));
 }
 
 export async function sendSuppression(
     to: string,
     options: { username: string },
 ): Promise<boolean> {
-    return send(to, 'AssurSafe, compte supprimé', suppression(options));
+    return send(to, 'Template, compte supprimé', suppression(options));
 }
 
 export default {

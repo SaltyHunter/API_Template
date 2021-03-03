@@ -16,7 +16,7 @@ export default class User extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id!: string
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, unique: true })
   username!: string
 
   @Column({ nullable: false, unique: true })
@@ -25,10 +25,10 @@ export default class User extends BaseEntity {
   @Column({ nullable: false, unique: true })
   n_tel!: string
 
-  @Column({ nullable: false, unique: true })
+  @Column({ nullable: false })
   nom!: string
 
-  @Column({ nullable: false, unique: true })
+  @Column({ nullable: false })
   prenom!: string
 
   @Column({ nullable: false })
