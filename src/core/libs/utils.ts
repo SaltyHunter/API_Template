@@ -44,6 +44,7 @@ export function transform(string:string){
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function mail(mail:string | undefined) {
   if (mail !== undefined) {
     return mail
