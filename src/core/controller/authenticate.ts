@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express'
-import { isEmpty } from 'lodash'
 import { error, success } from '../../core/helpers/response'
 import { BAD_REQUEST, CREATED, OK } from '../../core/constants/api'
 import jwt from 'jsonwebtoken'
@@ -16,18 +15,8 @@ const log = factory.getLogger(file)
 
 const api = Router()
 api.post('/signup', async (req: Request, res: Response) => {
-  const fields = ['username', 'mail', 'n_tel', 'nom', 'prenom', 'password', 'passwordConfirmation']
-
   try {
-    const missings = fields.filter((field: string) => !req.body[field])
-
-    if (!isEmpty(missings)) {
-      const isPlural = missings.length > 1
-      throw new Error(`Field${isPlural ? 's' : ''} [ ${missings.join(', ')} ] ${isPlural ? 'are' : 'is'} missing`)
-    }
-
     const { username, mail, n_tel, prenom, nom, password, passwordConfirmation } = req.body
-
     if (password !== passwordConfirmation) {
       throw new Error("Le mot de passe n'est pas le meme")
     }

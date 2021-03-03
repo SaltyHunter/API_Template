@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express'
-import { isEmpty } from 'lodash'
 import { error, success } from '@/core/helpers/response'
 import { BAD_REQUEST, CREATED, OK } from '@/core/constants/api'
 import User from '@/core/models/User'
@@ -28,17 +27,8 @@ api.get('/', async (req: Request, res: Response) => {
 })
 
 api.post('/', async (req: Request, res: Response) => {
-  const fields = ['name']
-
+  const { userId } = req.params
   try {
-    const missings = fields.filter((field: string) => !req.body[field])
-
-    if (!isEmpty(missings)) {
-      const isPlural = missings.length > 1
-      throw new Error(`Field${isPlural ? 's' : ''} [ ${missings.join(', ')} ] ${isPlural ? 'are' : 'is'} missing`)
-    }
-
-    const { userId  } = req.params
     const user = await User.findOne({ where: { id: userId } })
 
     if (!user) {
@@ -54,8 +44,8 @@ api.post('/', async (req: Request, res: Response) => {
     log.info("Template "+template.id+" créé pour l'utilisateur "+userId)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error(err.message)
-    log.error(err.message)
+    logger.error(err.message+"pour l'utilisateur"+userId)
+    log.error(err.message+"pour l'utilisateur"+userId)
   }
 })
 

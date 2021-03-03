@@ -7,10 +7,10 @@ const api = Router()
 
 api.get('/', (req: Request, res: Response) => {
   res.json({
-    hello: "L'API Template est en actuellement lancé",
+    hello: "L'API Template est en actuellement lancée",
     meta: {
       status: 'running',
-      version: '1.1.0',
+      version: '1.1.1',
     },
   })
 })
