@@ -3,6 +3,9 @@
   "version": "1.2.0",
   "main": "index.js",
   "license": "MIT",
+  "repository": "https://github.com/SaltyHunter/API_Temeplate.git",
+  "author": "SaltyHunter <kramoreau@gmail.com>",
+
   "scripts": {
     "dev": "yarn nodemon",
     "test": "yarn test:type",
