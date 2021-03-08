@@ -8,6 +8,7 @@ import { getLogger } from 'log4js'
 const file = transform(__filename)
 const logger = getLogger(file)
 const log = factory.getLogger(file)
+const regex =  /[\\]|[\/]/gmi;
 
 export const argv: string[] = process.argv.slice(2)
 
@@ -34,7 +35,7 @@ export function prelude(): void | never {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function transform(string:string){
-  const file = string.split("/");
+  const file = string.split(regex);
   let filename = file.pop();
   if (filename !== undefined) {
     return filename
