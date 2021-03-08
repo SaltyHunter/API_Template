@@ -1,4 +1,4 @@
-## Template d'API Version 1.2.0
+## Template d'API Version 1.2.1
 
 # Modules utilisés :
 
