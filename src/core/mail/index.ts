@@ -2,12 +2,12 @@ import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
 import confirmation from '@/core/mail/templates/confirmation';
 import suppression from '@/core/mail/templates//suppression';
-import { mail } from '@/core/libs/utils'
+import { email } from '@/core/libs/utils'
 
 
 dotenv.config();
 const API_KEY = process.env.SENDGRID_API_KEY;
-const MAIL = mail(process.env.SENDGRIDE_MAIL);
+const MAIL = email(process.env.SENDGRIDE_MAIL);
 
 export async function send(to: string, subject: string, body: string): Promise<boolean> {
     const msg = {

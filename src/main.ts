@@ -1,10 +1,9 @@
 import 'reflect-metadata'
-import { argv, prelude } from '@/core/libs/utils'
+import { argv, prelude, transform } from '@/core/libs/utils'
 import Server from './server'
 import dotenv from 'dotenv'
 import { factory } from '@/core/libs/log'
 import { getLogger } from 'log4js'
-import { transform } from '@/core/libs/utils'
 
 const file = transform(__filename)
 const logger = getLogger(file)

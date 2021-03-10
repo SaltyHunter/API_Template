@@ -11,16 +11,15 @@ import { transform } from '@/core/libs/utils'
 const file = transform(__filename)
 const logger = getLogger(file)
 const log = factory.getLogger(file)
-const api = Router()
+const users = Router()
 
-api.get('/:id', async (req: Request, res: Response) => {
+users.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const user = await User.findOne({ where: { id } })
     res.status(OK.status).json(success(user))
     logger.info("Consultation du profil utilisateur "+id)
     log.info("Consultation du profil utilisateur "+id)
-    console.log(log)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
     logger.error(err.message+" pour l'utilisateur "+id)
@@ -28,7 +27,7 @@ api.get('/:id', async (req: Request, res: Response) => {
   }
 })
 
-api.put('/:id', async (req: Request, res: Response) => {
+users.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const { username, password, passwordConfirmation, mail, n_tel, prenom, nom } = req.body
@@ -59,7 +58,7 @@ api.put('/:id', async (req: Request, res: Response) => {
   }
 })
 
-api.delete('/:id', async (req: Request, res: Response) => {
+users.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const user = await User.findOne({ where: { id } })
@@ -78,4 +77,4 @@ api.delete('/:id', async (req: Request, res: Response) => {
     log.error(err.message+" pour l'utilisateur "+id)
   }
 })
-export default api
+export default users

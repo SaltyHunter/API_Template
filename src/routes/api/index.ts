@@ -10,7 +10,7 @@ api.get('/', (res: Response) => {
     hello: "L'API est en actuellement lancée",
     meta: {
       status: 'running',
-      version: '1.2.2',
+      version: '1.3.0',
     },
   })
 })

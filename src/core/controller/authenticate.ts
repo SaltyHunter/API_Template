@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express'
-import { error, success } from '../../core/helpers/response'
-import { BAD_REQUEST, CREATED, OK } from '../../core/constants/api'
+import { error, success } from '../helpers/response'
+import { BAD_REQUEST, CREATED, OK } from '../constants/api'
 import jwt from 'jsonwebtoken'
 import User from '@/core/models/User'
 import passport from 'passport'
@@ -12,9 +12,9 @@ import { transform } from '@/core/libs/utils'
 const file = transform(__filename)
 const logger = getLogger(file)
 const log = factory.getLogger(file)
+const authenticate = Router()
 
-const api = Router()
-api.post('/signup', async (req: Request, res: Response) => {
+authenticate.post('/signup', async (req: Request, res: Response) => {
   try {
     const { username, mail, n_tel, prenom, nom, password, passwordConfirmation } = req.body
     if (password !== passwordConfirmation) {
@@ -43,8 +43,8 @@ api.post('/signup', async (req: Request, res: Response) => {
   }
 })
 
-api.post('/signin', async (req: Request, res: Response) => {
-  const authenticate = passport.authenticate('local', { session: false }, (errorMessage, user) => {
+authenticate.post('/signin', async (req: Request, res: Response) => {
+  const auth = passport.authenticate('local', { session: false }, (errorMessage, user) => {
     try {
       if (errorMessage) {
         res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, new Error(errorMessage)))
@@ -61,15 +61,7 @@ api.post('/signin', async (req: Request, res: Response) => {
       res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
     }
   })
-  authenticate(req, res)
+  auth(req, res)
 })
 
-/*api.post('/resetpw', async (req: Request, res: Response) => {
-  //todo
-})
-
-api.post('/resetpw', async (req: Request, res: Response) => {
-  //todo
-})
-*/
-export default api
+export default authenticate

@@ -1,10 +1,9 @@
 import express, { Express } from 'express'
 import bodyParser from 'body-parser'
 import passport from 'passport'
-import database from '@/core/controller/Database'
+import database from '@/core/controller/database'
 import '@/core/middlewares/passport'
 import api from '@/routes/api'
-import cors from 'cors'
 import { factory } from '@/core/libs/log'
 import { getLogger } from 'log4js'
 import { transform } from '@/core/libs/utils'
@@ -41,8 +40,6 @@ export default class Server {
     this._app.use(passport.initialize())
     this._app.use(bodyParser.json())
     this._app.use(bodyParser.urlencoded({ extended: false }))
-    this._app.use(cors())
-
     this._app.use('/api', api)
   }
 

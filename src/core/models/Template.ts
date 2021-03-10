@@ -27,15 +27,13 @@ export default class Template extends BaseEntity {
   @JoinColumn({ name: 'user_id' })
   user!: User
 
-  /*@OneToMany(() => File, (file: File) => file.dossier, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'file_id' })
-  file!: File[]*/
-
   /**
    * Methods
    */
   public toJSON(): Template {
-    const json = Object.assign({}, this)
+    const json: Template = Object.assign({}, this)
+
+    delete json.user
 
     return json
   }

@@ -30,15 +30,15 @@ export function transform(string:string){
     return filename
   } 
   else {
-    return filename = 'default'
+    return 'default'
   }
 }
 
-export function mail(mail:string | undefined) {
+export function email(mail:string | undefined) {
   if (mail !== undefined) {
     return mail
   }
   else {
-    return mail = 'patchakwak@template.api'
+    return 'patchakwak@template.api'
   }
 }

@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import users from '@/core/controller/user'
-import templates from '@/core/controller/template'
+import users from '@/core/controller/users'
+import templates from '@/core/controller/templates'
 
 const api = Router()
 

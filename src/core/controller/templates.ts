@@ -10,9 +10,9 @@ import { transform } from '@/core/libs/utils'
 const file = transform(__filename)
 const logger = getLogger(file)
 const log = factory.getLogger(file)
-const api = Router({ mergeParams: true })
+const templates = Router({ mergeParams: true })
 
-api.get('/', async (req: Request, res: Response) => {
+templates.get('/', async (req: Request, res: Response) => {
   const { userId } = req.params
   try {
     const template = await Template.find({ where: { user_id : userId } })
@@ -26,7 +26,7 @@ api.get('/', async (req: Request, res: Response) => {
   }
 })
 
-api.post('/', async (req: Request, res: Response) => {
+templates.post('/', async (req: Request, res: Response) => {
   const { userId } = req.params
   try {
     const user = await User.findOne({ where: { id: userId } })
@@ -49,7 +49,7 @@ api.post('/', async (req: Request, res: Response) => {
   }
 })
 
-api.put('/:id', async (req: Request, res: Response) => {
+templates.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const { name } = req.body
@@ -63,7 +63,7 @@ api.put('/:id', async (req: Request, res: Response) => {
   }
 })
 
-api.delete('/:id', async (req: Request, res: Response) => {
+templates.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     await Template.delete({ id: id })
@@ -77,4 +77,4 @@ api.delete('/:id', async (req: Request, res: Response) => {
     }
 })
 
-export default api
+export default templates

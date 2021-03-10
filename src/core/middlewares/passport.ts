@@ -13,8 +13,6 @@ dotenv.config()
 passport.use(
   new LocalStrategy(
     {
-      usernameField: 'username',
-      passwordField: 'password',
     },
     async (username, password, next) => {
       try {
