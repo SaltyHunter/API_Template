@@ -116,19 +116,15 @@ Ajout des tests
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299521221361724/sonar1.PNG">
 
     Issues :
-
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299521262649386/sonar2.PNG">
 
     Security :
-
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299522240315433/sonar3.PNG">
 
     Measure :
-
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299523209330765/sonar4.PNG">
 
     Code :
-
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299527571406918/sonar5.PNG">
 
 
