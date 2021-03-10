@@ -111,20 +111,19 @@ Ajout des tests
 
 # Rapport sonarqube :
 
-    Overview :
-
+Overview :
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299521221361724/sonar1.PNG">
 
-    Issues :
+Issues :
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299521262649386/sonar2.PNG">
 
-    Security :
+Security :
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299522240315433/sonar3.PNG">
 
-    Measure :
+Measure :
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299523209330765/sonar4.PNG">
 
-    Code :
+Code :
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299527571406918/sonar5.PNG">
 
 
