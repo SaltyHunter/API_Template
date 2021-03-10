@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
 import confirmation from '@/core/mail/templates/confirmation';

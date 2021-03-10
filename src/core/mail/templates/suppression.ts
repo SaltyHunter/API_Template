@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import mjml2html from 'mjml';
 
 function suppression({ username }: { username: string }): string {
