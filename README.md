@@ -86,21 +86,21 @@ Supprimer son profil DEL : http://localhost:8080/api/users/${uuid}
 
 # Template :
 
-Consulter ses dossiers  GET : http://localhost:8080/api/users/${uuid}/template
+Consulter ses templates  GET : http://localhost:8080/api/users/${uuid}/template
 
-Poster un dossier POST : http://localhost:8080/api/users/${uuid}/template
+Poster un template POST : http://localhost:8080/api/users/${uuid}/template
 
     {
         "name":
     }
 
-Modifier son dossier PUT : http://localhost:8080/api/users/${uuid}/template/${id_template}
+Modifier son template PUT : http://localhost:8080/api/users/${uuid}/template/${id_template}
 
     {
         "name":
     }
     
-Supprimer son dossier DELETE : http://localhost:8080/api/users/${uuid}/template/${id_template}
+Supprimer son template DELETE : http://localhost:8080/api/users/${uuid}/template/${id_template}
 
 
 # EN COURS :
