@@ -1,11 +1,11 @@
 import { Router, Request, Response } from 'express'
-import { error, success } from '@/core/helpers/response'
+import { error, success } from '@/core/utils/response'
 import { BAD_REQUEST, CREATED, OK } from '@/core/constants/api'
 import User from '@/core/models/User'
 import Template from '@/core/models/Template'
-import { factory } from '@/core/libs/log'
+import { factory } from '@/core/utils/log'
 import { getLogger } from 'log4js'
-import { transform } from '@/core/libs/utils'
+import { transform } from '@/core/utils/utils'
 
 const file = transform(__filename)
 const logger = getLogger(file)

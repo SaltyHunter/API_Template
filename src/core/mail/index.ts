@@ -2,7 +2,7 @@ import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
 import confirmation from '@/core/mail/templates/confirmation';
 import suppression from '@/core/mail/templates//suppression';
-import { email } from '@/core/libs/utils'
+import { email } from '@/core/utils/utils'
 
 
 dotenv.config();
