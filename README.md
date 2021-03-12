@@ -1,4 +1,4 @@
-## Template d'API Version 1.3.1
+## Template d'API Version 1.4.0
 
 
 # Installation
@@ -104,8 +104,6 @@ Supprimer son template DELETE : http://localhost:8080/api/users/${uuid}/template
 
 
 # EN COURS :
-
-Ajout d'un template pour l'orm : Prisma
 
 Ajout des tests
 
