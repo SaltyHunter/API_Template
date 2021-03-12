@@ -1,13 +1,13 @@
 import { Router, Request, Response } from 'express'
-import { error, success } from '../helpers/response'
+import { error, success } from '@/core/utils/response'
 import { BAD_REQUEST, CREATED, OK } from '../constants/api'
 import jwt from 'jsonwebtoken'
 import User from '@/core/models/User'
 import passport from 'passport'
 import { sendConfirmation } from '@/core/mail'
-import { factory } from '@/core/libs/log'
+import { factory } from '@/core/utils/log'
 import { getLogger } from 'log4js'
-import { transform } from '@/core/libs/utils'
+import { transform } from '@/core/utils/utils'
 
 const file = transform(__filename)
 const logger = getLogger(file)

@@ -4,9 +4,9 @@ import passport from 'passport'
 import database from '@/core/controller/database'
 import '@/core/middlewares/passport'
 import api from '@/routes/api'
-import { factory } from '@/core/libs/log'
+import { factory } from '@/core/utils/log'
 import { getLogger } from 'log4js'
-import { transform } from '@/core/libs/utils'
+import { transform } from '@/core/utils/utils'
 
 const file  = transform(__filename)
 const logger = getLogger(file)
