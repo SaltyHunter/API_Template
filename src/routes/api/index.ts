@@ -1,11 +1,11 @@
-import { Router, Response } from 'express'
+import { Router, Response, Request } from 'express'
 import auth from '@/core/controller/authenticate'
 import secured from '@/routes/api/secured'
 import passport from 'passport'
 
 const api = Router()
 
-api.get('/', (res: Response) => {
+api.get('/', (req: Request,res: Response) => {
   res.json({
     hello: "L'API est en actuellement lancée",
     meta: {
