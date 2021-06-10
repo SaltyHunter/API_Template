@@ -127,17 +127,6 @@ Code :
 <img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299527571406918/sonar5.PNG">
 
 
-# NB des modules à mettre à jour
-
-warning mjml > mjml-core > juice > cheerio > cheerio-select-tmp@0.1.1: Use cheerio-select instead
-
-warning @babel/cli > @nicolo-ribaudo/chokidar-2 > braces > snapdragon > source-map-resolve > resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
-
-warning @babel/cli > @nicolo-ribaudo/chokidar-2 > braces > snapdragon > source-map-resolve > urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
-
-warning @types/dotenv@8.2.0: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
-
-warning @types/moment@2.13.0: This is a stub types definition for Moment (https://github.com/moment/moment). Moment provides its own type definitions, so you don't need @types/moment installed!
-
+# NB 
 User.ts : delete json.password, même si la ligne est surligné fonctionnement ok, le mot de passe n'est pas envoyé dans le JSON
 Template.ts : delete json.user, même si la ligne est surligné fonctionnement ok, les informations du user ne sont pas envoyées dans le JSON
