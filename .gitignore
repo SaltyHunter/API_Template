@@ -114,3 +114,4 @@ temp/
 .vscode
 .dist
 yarn-error.log
+yarn.lock
