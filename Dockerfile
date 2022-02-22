@@ -1,8 +1,8 @@
 FROM node:13-alpine
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /src/app
 
-WORKDIR /usr/src/app
+WORKDIR /src/app
 
 COPY . .
 RUN npm install
