@@ -24,7 +24,6 @@ authenticate.post('/signup', async (req: Request, res: Response) => {
 
     user.username = username
     user.mail = mail
-    user.n_tel = n_tel
     user.prenom = prenom
     user.nom = nom
     user.password = password

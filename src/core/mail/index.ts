@@ -7,7 +7,7 @@ import { email } from '@/core/utils/utils'
 
 dotenv.config();
 const API_KEY = process.env.SENDGRID_API_KEY;
-const MAIL = email(process.env.SENDGRIDE_MAIL);
+const MAIL = email(process.env.SENDGRID_MAIL);
 
 export async function send(to: string, subject: string, body: string): Promise<boolean> {
     const msg = {

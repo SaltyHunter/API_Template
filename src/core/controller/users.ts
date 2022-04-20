@@ -30,7 +30,7 @@ users.get('/:id', async (req: Request, res: Response) => {
 users.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
-    const { username, password, passwordConfirmation, mail, n_tel, prenom, nom } = req.body
+    const { username, password, passwordConfirmation, mail, prenom, nom } = req.body
 
     if (password !== passwordConfirmation) {
       throw new Error("Le mot de passe n'est pas le meme")
@@ -40,7 +40,6 @@ users.put('/:id', async (req: Request, res: Response) => {
     await User.update({ id: id }, { username: username })
     await User.update({ id: id }, { password: pw })
     await User.update({ id: id }, { mail: mail })
-    await User.update({ id: id }, { n_tel: n_tel })
     await User.update({ id: id }, { nom: nom })
     await User.update({ id: id }, { prenom: prenom })
 

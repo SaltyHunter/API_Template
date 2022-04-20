@@ -52,7 +52,6 @@ S'inscrire POST : http://localhost:8080/api/authenticate/signup
     {
         "username": ,
         "mail": ,
-        "n_tel": ,
         "nom": ,
         "prenom": ,
         "password": , 
