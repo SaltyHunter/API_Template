@@ -1,14 +1,12 @@
 type RepsonseOk = {
-  data: {
-    [name: string]: any
-    meta: any
-  }
+  [name: string]: any
+  meta: any
 }
 
 type ResponseKo = {
   err: {
-    status: number
-    code: string
+    code: number
+    status: string
     description: string
   }
 }
@@ -16,16 +14,16 @@ type ResponseKo = {
 export function success(resource: any, meta: any = {}): RepsonseOk {
   const name = resource.constructor.name
 
-  return { data: { [name.toLowerCase()]: resource.toJSON(), meta } }
+  return { [name.toLowerCase()]: resource.toJSON(), meta }
 }
 
-export function error({ status, code }: { status: number; code: string }, err: any): ResponseKo {
+export function error({ code,status }: { code: number; status: string }, err: any): ResponseKo {
   const description = err.detail ? err.detail : err.message
 
   return {
     err: {
-      status,
       code,
+      status,
       description,
     },
   }

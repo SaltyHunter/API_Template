@@ -31,12 +31,12 @@ authenticate.post('/signup', async (req: Request, res: Response) => {
     await user.save()
     const payload = { id: user.id, username }
     const token = jwt.sign(payload, process.env.JWT_ENCRYPTION as string)
-    res.status(CREATED.status).json(success(user, { token }))
+    res.status(CREATED.code).json(success(user, { token }))
     await sendConfirmation(mail, { username })
     logger.info("Création de l'utilisateur " + user.id)
     log.info("Création de l'utilisateur " + user.id)
   } catch (err) {
-    res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+    res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     logger.error("impposible de créer l'utilisateur car il existe déjà dans la base")
     log.error("impposible de créer l'utilisateur car il existe déjà dans la base")
   }
@@ -46,18 +46,18 @@ authenticate.post('/signin', async (req: Request, res: Response) => {
   const auth = passport.authenticate('local', { session: false }, (errorMessage, user) => {
     try {
       if (errorMessage) {
-        res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, new Error(errorMessage)))
+        res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, new Error(errorMessage)))
         logger.error("Connexion impossible car "+errorMessage)
         log.error("Connexion impossible car "+errorMessage)
         return
       }
       const payload = { id: user.id, username: user.username }
       const token = jwt.sign(payload, process.env.JWT_ENCRYPTION as string)
-      res.status(OK.status).json(success(user, { token }))
+      res.status(OK.code).json(success(user, { token }))
       logger.info("Connexion de l'utilisateur " + user.id)
       log.info("Connexion de l'utilisateur " + user.id)
     } catch (err) {
-      res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+      res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     }
   })
   auth(req, res)

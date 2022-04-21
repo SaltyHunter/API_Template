@@ -1,19 +1,19 @@
 export const OK = {
-  status: 200,
-  code: 'OK',
+  code: 200,
+  status: 'OK',
 }
 
 export const CREATED = {
-  status: 201,
-  code: 'CREATED',
+  code: 201,
+  status: 'CREATED',
 }
 
 export const BAD_REQUEST = {
-  status: 400,
-  code: 'BAD_REQUEST',
+  code: 400,
+  status: 'BAD_REQUEST',
 }
 
 export const UNAUTHORIZED = {
-  status: 401,
-  code: 'UNAUTHORIZED',
+  code: 401,
+  status: 'UNAUTHORIZED',
 }

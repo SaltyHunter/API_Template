@@ -16,11 +16,11 @@ templates.get('/', async (req: Request, res: Response) => {
   const { userId } = req.params
   try {
     const template = await Template.find({ where: { user_id : userId } })
-    res.status(OK.status).json(template)
+    res.status(OK.code).json(template)
     logger.info("Consultation des templates de l'utilisateur "+userId)
     log.info("Consultation des templates de l'utilisateur "+userId)
   } catch (err) {
-    res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+    res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     logger.error("Erreur de consultation pour les templates de l'utilisateur "+userId)
     log.error("Erreur de consultation pour les templates de l'utilisateur "+userId)
   }
@@ -39,11 +39,11 @@ templates.post('/', async (req: Request, res: Response) => {
     template.user = user
     template.name = name
     await template.save()
-    res.status(CREATED.status).json(success(template))
+    res.status(CREATED.code).json(success(template))
     logger.info("Template "+template.id+" créé pour l'utilisateur "+userId)
     log.info("Template "+template.id+" créé pour l'utilisateur "+userId)
   } catch (err) {
-    res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+    res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     logger.error("Erreur de création de template pour l'utilisateur"+userId)
     log.error("Erreur de création de template pour l'utilisateur"+userId)
   }
@@ -53,11 +53,12 @@ templates.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const { name } = req.body
-    await Template.update({ id: id }, { name: name })
+    await Template.update({ id: id }, { name: name });
+    // await User.update({ id: id }, { template: template });
     const template = await Template.findOne({ where: { id: id } })
-    res.status(OK.status).json(success(template))
+    res.status(OK.code).json(success(template))
   } catch (err) {
-    res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+    res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     logger.error("Erreur de modification pour le template "+id)
     log.error("Erreur de modification pour le template "+id)
   }
@@ -67,11 +68,11 @@ templates.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     await Template.delete({ id: id })
-    res.status(OK.status).json({ delete: 'OK' })
+    res.status(OK.code).json({ delete: 'OK' })
     logger.info("Suppression effectué pour le template "+id)
     log.info("Suppression effectué pour le template "+id)
   } catch (err) {
-    res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+    res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     logger.error("Erreur lors de la suppresstion du template "+id)
     log.error("Erreur lors de la suppresstion du template template "+id)
     }
