@@ -4,7 +4,6 @@ import confirmation from '@/core/mail/templates/confirmation';
 import suppression from '@/core/mail/templates//suppression';
 import { email } from '@/core/utils/utils'
 
-
 dotenv.config();
 const API_KEY = process.env.SENDGRID_API_KEY;
 const MAIL = email(process.env.SENDGRID_MAIL);

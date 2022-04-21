@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express'
 import { error, success } from '@/core/utils/response'
-import { BAD_REQUEST, OK } from '@/core/constants/api'
+import { BAD_REQUEST, OK, UNAUTHORIZED } from '@/core/constants/api'
 import User from '@/core/models/User'
 import bcrypt from 'bcryptjs'
 import { sendSuppression } from '@/core/mail'
@@ -15,6 +15,7 @@ const users = Router()
 
 users.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
+  console.log(id)
   try {
     const user = await User.findOne({ where: { id } })
     res.status(OK.status).json(success(user))
@@ -22,9 +23,10 @@ users.get('/:id', async (req: Request, res: Response) => {
     log.info("Consultation du profil utilisateur "+id)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error(err.message+" pour l'utilisateur "+id)
-    log.error(err.message+" pour l'utilisateur "+id)
+    logger.error("L'utilisateur "+id+" n'existe pas")
+    log.error("L'utilisateur "+id+" n'existe pas")
   }
+
 })
 
 users.put('/:id', async (req: Request, res: Response) => {
@@ -51,8 +53,8 @@ users.put('/:id', async (req: Request, res: Response) => {
 
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error(err.message+" pour l'utilisateur "+id)
-    log.error(err.message+" pour l'utilisateur "+id)
+    logger.error("L'utilisateur "+id+" n'existe pas")
+    log.error("L'utilisateur "+id+" n'existe pas")
 
   }
 })
@@ -72,8 +74,8 @@ users.delete('/:id', async (req: Request, res: Response) => {
     log.info("Suppression effectué pour l'utilisateur "+id)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error(err.message+" pour l'utilisateur "+id)
-    log.error(err.message+" pour l'utilisateur "+id)
+    logger.error("L'utilisateur "+id+" n'existe pas")
+    log.error("L'utilisateur "+id+" n'existe pas")
   }
 })
 export default users

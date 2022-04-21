@@ -16,7 +16,7 @@ const authenticate = Router()
 
 authenticate.post('/signup', async (req: Request, res: Response) => {
   try {
-    const { username, mail, n_tel, prenom, nom, password, passwordConfirmation } = req.body
+    const { username, mail, prenom, nom, password, passwordConfirmation } = req.body
     if (password !== passwordConfirmation) {
       throw new Error("Le mot de passe n'est pas le meme")
     }
@@ -37,8 +37,8 @@ authenticate.post('/signup', async (req: Request, res: Response) => {
     log.info("Création de l'utilisateur " + user.id)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error("impposible de créer l'utilisateur car "+err.message)
-    log.error("impposible de créer l'utilisateur car "+err.message)
+    logger.error("impposible de créer l'utilisateur car il existe déjà dans la base")
+    log.error("impposible de créer l'utilisateur car il existe déjà dans la base")
   }
 })
 
