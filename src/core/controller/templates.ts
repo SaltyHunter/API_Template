@@ -21,8 +21,8 @@ templates.get('/', async (req: Request, res: Response) => {
     log.info("Consultation des templates de l'utilisateur "+userId)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error(err.message+" pour les templates de l'utilisateur "+userId)
-    log.error(err.message+" pour les templates de l'utilisateur "+userId)
+    logger.error("Erreur de consultation pour les templates de l'utilisateur "+userId)
+    log.error("Erreur de consultation pour les templates de l'utilisateur "+userId)
   }
 })
 
@@ -44,8 +44,8 @@ templates.post('/', async (req: Request, res: Response) => {
     log.info("Template "+template.id+" créé pour l'utilisateur "+userId)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error(err.message+"pour l'utilisateur"+userId)
-    log.error(err.message+"pour l'utilisateur"+userId)
+    logger.error("Erreur de création de template pour l'utilisateur"+userId)
+    log.error("Erreur de création de template pour l'utilisateur"+userId)
   }
 })
 
@@ -58,8 +58,8 @@ templates.put('/:id', async (req: Request, res: Response) => {
     res.status(OK.status).json(success(template))
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error(err.message+" pour le template "+id)
-    log.error(err.message+" pour le template "+id)
+    logger.error("Erreur de modification pour le template "+id)
+    log.error("Erreur de modification pour le template "+id)
   }
 })
 
@@ -72,8 +72,8 @@ templates.delete('/:id', async (req: Request, res: Response) => {
     log.info("Suppression effectué pour le template "+id)
   } catch (err) {
     res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
-    logger.error(err.message+" pour le template "+id)
-    log.error(err.message+" pour le template "+id)
+    logger.error("Erreur lors de la suppresstion du template "+id)
+    log.error("Erreur lors de la suppresstion du template template "+id)
     }
 })
 

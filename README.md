@@ -67,9 +67,9 @@ Se connecter POST : http://localhost:8080/api/authenticate/signin
 
 # Profil : 
 
-Consulter son profil GET : http://localhost:8080/api/users/${uuid}
+Consulter son profil GET : http://localhost:8080/api/${uuid}
 
-Modifier son profil PUT : http://localhost:8080/api/users/${uuid}
+Modifier son profil PUT : http://localhost:8080/api/${uuid}
 
     {
         "username": ,
@@ -81,25 +81,25 @@ Modifier son profil PUT : http://localhost:8080/api/users/${uuid}
         "passwordConfirmation":
     }
 
-Supprimer son profil DEL : http://localhost:8080/api/users/${uuid}
+Supprimer son profil DEL : http://localhost:8080/api/${uuid}
 
 # Template :
 
-Consulter ses templates  GET : http://localhost:8080/api/users/${uuid}/template
+Consulter ses templates  GET : http://localhost:8080/api/${uuid}/template
 
-Poster un template POST : http://localhost:8080/api/users/${uuid}/template
+Poster un template POST : http://localhost:8080/api/${uuid}/template
 
     {
         "name":
     }
 
-Modifier son template PUT : http://localhost:8080/api/users/${uuid}/template/${id_template}
+Modifier son template PUT : http://localhost:8080/api/${uuid}/template/${id_template}
 
     {
         "name":
     }
     
-Supprimer son template DELETE : http://localhost:8080/api/users/${uuid}/template/${id_template}
+Supprimer son template DELETE : http://localhost:8080/api/${uuid}/template/${id_template}
 
 
 # EN COURS :
