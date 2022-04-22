@@ -121,32 +121,3 @@ Modifier son template PUT : http://localhost:8080/api/${uuid}/template/${id_temp
     }
     
 Supprimer son template DELETE : http://localhost:8080/api/${uuid}/template/${id_template}
-
-
-# EN COURS :
-
-Ajout des tests
-
-# Rapport sonarqube :
-
-Overview :
-<img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299521221361724/sonar1.PNG">
-
-Issues :
-<img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299521262649386/sonar2.PNG">
-
-
-Security :
-
-<img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299522240315433/sonar3.PNG">
-
-Measure :
-<img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299523209330765/sonar4.PNG">
-
-Code :
-<img src ="https://cdn.discordapp.com/attachments/499862865956831234/819299527571406918/sonar5.PNG">
-
-
-# NB 
-User.ts : delete json.password, même si la ligne est surligné fonctionnement ok, le mot de passe n'est pas envoyé dans le JSON
-Template.ts : delete json.user, même si la ligne est surligné fonctionnement ok, les informations du user ne sont pas envoyées dans le JSON
