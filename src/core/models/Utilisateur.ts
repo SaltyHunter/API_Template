@@ -7,12 +7,16 @@ import {
   BeforeInsert,
   BeforeUpdate,
   OneToMany,
+  ManyToOne,
+  JoinColumn,
+  OneToOne,
 } from 'typeorm'
 import bcrypt from 'bcryptjs'
 import Template from './Template'
+import Role from './Role'
 
 @Entity()
-export default class User extends BaseEntity {
+export default class Utilisateur extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id!: string
 
@@ -31,12 +35,19 @@ export default class User extends BaseEntity {
   @Column({ nullable: false })
   password!: string
 
+  @Column({ nullable: false })
+  role_id!: number
+
   @CreateDateColumn()
   createdAt!: string
 
   @OneToMany(() => Template, (template: Template) => template.user)
   template!: Template[]
   
+  @OneToOne(() => Role, (role: Role) => role.user )
+  @JoinColumn({ name: 'role_id' })
+  role!: Role
+
   /**
    * Hooks
    */
@@ -57,8 +68,8 @@ export default class User extends BaseEntity {
     return bcrypt.compareSync(uncryptedPassword, this.password)
   }
 
-  public toJSON(): User {
-    const json: User = Object.assign({}, this)
+  public toJSON(): Utilisateur {
+    const json: Utilisateur = Object.assign({}, this)
 
     delete json.password
 

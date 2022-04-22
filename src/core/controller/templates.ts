@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express'
 import { error, success } from '@/core/utils/response'
 import { BAD_REQUEST, CREATED, OK } from '@/core/constants/api'
-import User from '@/core/models/User'
+import Utilisateur from '@/core/models/Utilisateur'
 import Template from '@/core/models/Template'
 import { factory } from '@/core/utils/log'
 import { getLogger } from 'log4js'
@@ -12,7 +12,7 @@ const logger = getLogger(file)
 const log = factory.getLogger(file)
 const templates = Router({ mergeParams: true })
 
-templates.get('/', async (req: Request, res: Response) => {
+templates.get('/all', async (req: Request, res: Response) => {
   const { userId } = req.params
   try {
     const template = await Template.find({ where: { user_id : userId } })
@@ -26,10 +26,24 @@ templates.get('/', async (req: Request, res: Response) => {
   }
 })
 
+templates.get('/:id', async (req: Request, res: Response) => {
+  const { userId, id } = req.params
+  try {
+    const template = await Template.findOne({ where: [ { id : +id,  user_id : userId } ] })
+    res.status(OK.code).json(template)
+    logger.info("Consultation du template "+id+" de l'utilisateur "+userId)
+    log.info("Consultation du template "+id+" de l'utilisateur "+userId)
+  } catch (err) {
+    res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
+    logger.error("Erreur de consultation pour les templates de l'utilisateur "+userId)
+    log.error("Erreur de consultation pour les templates de l'utilisateur "+userId)
+  }
+})
+
 templates.post('/', async (req: Request, res: Response) => {
   const { userId } = req.params
   try {
-    const user = await User.findOne({ where: { id: userId } })
+    const user = await Utilisateur.findOne({ where: { id: userId } })
 
     if (!user) {
       throw new Error(`L'utilisateur ${userId } n'existe pas`)
@@ -53,8 +67,7 @@ templates.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const { name } = req.body
-    await Template.update({ id: id }, { name: name });
-    // await User.update({ id: id }, { template: template });
+    await Template.update({ id: +id }, { name: name });
     const template = await Template.findOne({ where: { id: id } })
     res.status(OK.code).json(success(template))
   } catch (err) {
@@ -67,7 +80,7 @@ templates.put('/:id', async (req: Request, res: Response) => {
 templates.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
-    await Template.delete({ id: id })
+    await Template.delete({ id: +id })
     res.status(OK.code).json({ delete: 'OK' })
     logger.info("Suppression effectué pour le template "+id)
     log.info("Suppression effectué pour le template "+id)

@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express'
 import { error, success } from '@/core/utils/response'
 import { BAD_REQUEST, CREATED, OK } from '../constants/api'
 import jwt from 'jsonwebtoken'
-import User from '@/core/models/User'
+import Utilisateur from '@/core/models/Utilisateur'
 import passport from 'passport'
 import { sendConfirmation } from '@/core/mail'
 import { factory } from '@/core/utils/log'
@@ -13,6 +13,7 @@ const file = transform(__filename)
 const logger = getLogger(file)
 const log = factory.getLogger(file)
 const authenticate = Router()
+const defaut = 2;
 
 authenticate.post('/signup', async (req: Request, res: Response) => {
   try {
@@ -20,13 +21,14 @@ authenticate.post('/signup', async (req: Request, res: Response) => {
     if (password !== passwordConfirmation) {
       throw new Error("Le mot de passe n'est pas le meme")
     }
-    const user = new User()
+    const user = new Utilisateur()
 
     user.username = username
     user.mail = mail
     user.prenom = prenom
     user.nom = nom
     user.password = password
+    user.role_id = defaut
 
     await user.save()
     const payload = { id: user.id, username }
@@ -37,8 +39,8 @@ authenticate.post('/signup', async (req: Request, res: Response) => {
     log.info("Création de l'utilisateur " + user.id)
   } catch (err) {
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
-    logger.error("impposible de créer l'utilisateur car il existe déjà dans la base")
-    log.error("impposible de créer l'utilisateur car il existe déjà dans la base")
+    logger.error("impposible de créer l'utilisateur"+err)
+    log.error("impposible de créer l'utilisateur"+err)
   }
 })
 

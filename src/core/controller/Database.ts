@@ -1,7 +1,8 @@
 import dotenv from 'dotenv'
-import { createConnection, Connection } from 'typeorm'
-import User from '@/core/models/User'
+import { createConnection, Connection, createQueryBuilder } from 'typeorm'
+import Utilisateur from '@/core/models/Utilisateur'
 import Template from '@/core/models/Template'
+import Role from '../models/Role'
 
 export default class Database {
   private static _instance: Database | null = null
@@ -34,11 +35,17 @@ export default class Database {
       username,
       password,
       database,
-      entities: [User, Template],
+      entities: [Utilisateur, Template, Role],
       dropSchema: false,
       synchronize: true,
       logging: false,
     })
+
+    // 'insert into role(id, role) values(1, Administrateur),(2, Utilisateur')'
+    await createQueryBuilder().insert().into(Role).values([
+      { id: 1, role: 'Administrateur' },
+      { id: 2, role: 'Utilisateur' }
+    ])
 
     return this._connection
   }

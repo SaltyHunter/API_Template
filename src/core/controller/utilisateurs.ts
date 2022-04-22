@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express'
 import { error, success } from '@/core/utils/response'
 import { BAD_REQUEST, OK, UNAUTHORIZED } from '@/core/constants/api'
-import User from '@/core/models/User'
+import Utilisateur from '@/core/models/Utilisateur'
 import bcrypt from 'bcryptjs'
 import { sendSuppression } from '@/core/mail'
 import { factory } from '@/core/utils/log'
@@ -17,14 +17,14 @@ users.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   console.log(id)
   try {
-    const user = await User.findOne({ where: { id } })
+    const user = await Utilisateur.findOne({ where: { id } })
     res.status(OK.code).json(success(user))
     logger.info("Consultation du profil utilisateur "+id)
     log.info("Consultation du profil utilisateur "+id)
   } catch (err) {
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
-    logger.error("L'utilisateur "+id+" n'existe pas")
-    log.error("L'utilisateur "+id+" n'existe pas")
+    logger.error(err)
+    log.error(err)
   }
 
 })
@@ -39,13 +39,9 @@ users.put('/:id', async (req: Request, res: Response) => {
     }
     const pw = bcrypt.hashSync(password)
     
-    await User.update({ id: id }, { username: username });
-    await User.update({ id: id }, { password: pw });
-    await User.update({ id: id }, { mail: mail });
-    await User.update({ id: id }, { nom: nom });
-    await User.update({ id: id }, { prenom: prenom });
+    await Utilisateur.update({ id: id }, { username: username, password: pw, mail: mail, nom: nom, prenom: prenom });
 
-    const user = await User.findOne({ where: { id: id } })
+    const user = await Utilisateur.findOne({ where: { id: id } })
 
     res.status(OK.code).json(success(user))
     logger.info("Modification effectué pour l'utilisateur "+id)
@@ -53,8 +49,8 @@ users.put('/:id', async (req: Request, res: Response) => {
 
   } catch (err) {
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
-    logger.error("L'utilisateur "+id+" n'existe pas")
-    log.error("L'utilisateur "+id+" n'existe pas")
+    logger.error(err)
+    log.error(err)
 
   }
 })
@@ -62,20 +58,20 @@ users.put('/:id', async (req: Request, res: Response) => {
 users.delete('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
   try {
-    const user = await User.findOne({ where: { id } })
+    const user = await Utilisateur.findOne({ where: { id } })
     const username = user?.username
     const mail = user?.mail
     if (username !== undefined && mail !== undefined) {
       await sendSuppression(mail, { username })
-      await User.delete({ id: id })
+      await Utilisateur.delete({ id: id })
     }
     res.status(OK.code).json({ delete: 'OK' })
     logger.info("Suppression effectué pour l'utilisateur "+id)
     log.info("Suppression effectué pour l'utilisateur "+id)
   } catch (err) {
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
-    logger.error("L'utilisateur "+id+" n'existe pas")
-    log.error("L'utilisateur "+id+" n'existe pas")
+    logger.error(err)
+    log.error(err)
   }
 })
 export default users

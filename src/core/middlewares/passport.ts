@@ -2,7 +2,7 @@ import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import dotenv from 'dotenv'
-import User from '@/core/models/User'
+import Utilisateur from '@/core/models/Utilisateur'
 
 dotenv.config()
 
@@ -16,7 +16,7 @@ passport.use(
     },
     async (username, password, next) => {
       try {
-        const user = await User.findOne({ username })
+        const user = await Utilisateur.findOne({ username })
 
         if (!user) {
           next(`l'utilisateur ${username} n'existe pas`, null)
@@ -46,11 +46,11 @@ passport.use(
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: process.env.JWT_ENCRYPTION as string,
     },
-    async (jwtPayload: { id: string }, next: (arg0: string | null, arg1: User | undefined) => void) => {
+    async (jwtPayload: { id: string }, next: (arg0: string | null, arg1: Utilisateur | undefined) => void) => {
       try {
         const { id } = jwtPayload
 
-        const user = await User.findOne({ where: { id } })
+        const user = await Utilisateur.findOne({ where: { id } })
 
         if (!user) {
           next(`l'utilisateur ${id} n'existe pas`, undefined)

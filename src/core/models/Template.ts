@@ -7,12 +7,12 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm'
-import User from './User'
+import Utilisateur from './Utilisateur'
 
 @Entity()
 export default class Template extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: string
+  id!: number
 
   @Column({ nullable: false })
   user_id!: string
@@ -23,9 +23,9 @@ export default class Template extends BaseEntity {
   @CreateDateColumn()
   createdAt!: string
 
-  @ManyToOne(() => User, (user: User) => user.template, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Utilisateur, (user: Utilisateur) => user.template, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
-  user!: User
+  user!: Utilisateur
 
   /**
    * Methods
