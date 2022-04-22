@@ -83,9 +83,30 @@ Modifier son profil PUT : http://localhost:8080/api/${uuid}
 
 Supprimer son profil DEL : http://localhost:8080/api/${uuid}
 
+# Role :
+
+Consulter les roles  GET_ALL : http://localhost:8080/api/roles/all
+Consulter un role  GET_ALL : http://localhost:8080/api/roles/${id}
+
+Poster un role POST : http://localhost:8080/api/roles/${id}
+    {
+        "role":
+    }
+
+Poster un role PUT : http://localhost:8080/api/roles/${id}
+
+    {
+        "role":
+    }
+    
+Supprimer son template DELETE : http://localhost:8080/api/roles/${id}
+
+
+
 # Template :
 
-Consulter ses templates  GET : http://localhost:8080/api/${uuid}/template
+Consulter ses templates  GET_ALL : http://localhost:8080/api/${uuid}/template
+Consulter un de ses templates  GET : http://localhost:8080/api/${uuid}/template/${id_template}
 
 Poster un template POST : http://localhost:8080/api/${uuid}/template
 

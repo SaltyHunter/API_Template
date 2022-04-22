@@ -12,7 +12,6 @@ const log = factory.getLogger(file)
 const roles = Router({ mergeParams: true })
 
 roles.get('/all', async (req: Request, res: Response) => {
-//   const { userId } = req.params
   try {
     const role = await Role.find()
     res.status(OK.code).json(role)
@@ -25,8 +24,21 @@ roles.get('/all', async (req: Request, res: Response) => {
   }
 })
 
+roles.get('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params
+    try {
+      const role = await Role.find({ where : { id : +id}})
+      res.status(OK.code).json(role)
+      logger.info("Consultation d'un role ")
+      log.info("Consultation d'un role ")
+    } catch (err) {
+      res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
+      logger.error(err)
+      log.error(err)
+    }
+  })
+
 roles.post('/', async (req: Request, res: Response) => {
-  const { userId } = req.params
   try {
     const { role } = req.body
     const roles = new Role()
@@ -47,7 +59,7 @@ roles.put('/:id', async (req: Request, res: Response) => {
   try {
     const { role } = req.body
     await Role.update({ id: +id }, { role: role });
-    const roles = await Role.findOne({ where: { id: id } })
+    const roles = await Role.findOne({ where: { id: +id } })
     res.status(OK.code).json(success(roles))
   } catch (err) {
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
