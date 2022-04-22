@@ -13,7 +13,7 @@ const file = transform(__filename)
 const logger = getLogger(file)
 const log = factory.getLogger(file)
 const authenticate = Router()
-const defaut = 2;
+const defaut = 3;
 
 authenticate.post('/signup', async (req: Request, res: Response) => {
   try {
