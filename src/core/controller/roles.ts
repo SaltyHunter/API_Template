@@ -42,8 +42,8 @@ roles.post('/', async (req: Request, res: Response) => {
   try {
     const { role } = req.body
     const roles = new Role()
-    role.role = role
-    await role.save()
+    roles.role = role
+    await roles.save()
     res.status(CREATED.code).json(success(roles))
     logger.info("Role "+role.role+" créé")
     log.info("Role "+role.role+" créé")
