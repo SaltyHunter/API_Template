@@ -50,10 +50,11 @@ roles.post('/', async (req: Request, res: Response) => {
       const { role } = req.body
       const roles = new Role()
       roles.role = role
+      console.log(roles.role)
       await roles.save()
       res.status(CREATED.code).json(success(roles))
-      logger.info("Role "+role.role+" créé")
-      log.info("Role "+role.role+" créé")
+      logger.info("Role "+roles.role+" créé")
+      log.info("Role "+roles.role+" créé")
     }
   } catch (err) {
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
