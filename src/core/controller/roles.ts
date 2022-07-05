@@ -1,7 +1,8 @@
 import { Router, Request, Response } from 'express'
 import { error, success } from '@/core/utils/response'
-import { BAD_REQUEST, CREATED, OK } from '@/core/constants/api'
+import { BAD_REQUEST, CREATED, OK, UNAUTHORIZED } from '@/core/constants/api'
 import Role from '@/core/models/Role'
+import Utilisateur from '@/core/models/Utilisateur'
 import { factory } from '@/core/utils/log'
 import { getLogger } from 'log4js'
 import { transform } from '@/core/utils/utils'
@@ -40,13 +41,20 @@ roles.get('/:id', async (req: Request, res: Response) => {
 
 roles.post('/', async (req: Request, res: Response) => {
   try {
-    const { role } = req.body
-    const roles = new Role()
-    roles.role = role
-    await roles.save()
-    res.status(CREATED.code).json(success(roles))
-    logger.info("Role "+role.role+" créé")
-    log.info("Role "+role.role+" créé")
+    const { userId } = req.params
+    const user = await Utilisateur.findOne({ where: { id: userId } })
+    if (user?.role_id !== 1){
+      let message = `L'utilisateur ${user?.prenom} ${user?.prenom} ne possède pas les droits nécessaire`
+      res.status(UNAUTHORIZED.code).json(error(UNAUTHORIZED,message))
+    }else {
+      const { role } = req.body
+      const roles = new Role()
+      roles.role = role
+      await roles.save()
+      res.status(CREATED.code).json(success(roles))
+      logger.info("Role "+role.role+" créé")
+      log.info("Role "+role.role+" créé")
+    }
   } catch (err) {
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     logger.error(err)
@@ -55,12 +63,18 @@ roles.post('/', async (req: Request, res: Response) => {
 })
 
 roles.put('/:id', async (req: Request, res: Response) => {
-  const { id } = req.params
+  const { id, userId } = req.params
   try {
-    const { role } = req.body
-    await Role.update({ id: +id }, { role: role });
-    const roles = await Role.findOne({ where: { id: +id } })
-    res.status(OK.code).json(success(roles))
+    const user = await Utilisateur.findOne({ where: { id: userId } })
+    if (user?.role_id !== 1){
+      let message = `L'utilisateur ${user?.prenom} ${user?.prenom} ne possède pas les droits nécessaire`
+      res.status(UNAUTHORIZED.code).json(error(UNAUTHORIZED,message))
+    }else {
+      const { role } = req.body
+      await Role.update({ id: +id }, { role: role });
+      const roles = await Role.findOne({ where: { id: +id } })
+      res.status(OK.code).json(success(roles))
+    }
   } catch (err) {
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     logger.error("Erreur de modification pour le role "+err)
@@ -69,12 +83,18 @@ roles.put('/:id', async (req: Request, res: Response) => {
 })
 
 roles.delete('/:id', async (req: Request, res: Response) => {
-  const { id } = req.params
+  const { id, userId } = req.params
   try {
-    await Role.delete({ id: +id })
-    res.status(OK.code).json({ delete: 'OK' })
-    logger.info("Suppression effectué pour le role "+id)
-    log.info("Suppression effectué pour le role "+id)
+    const user = await Utilisateur.findOne({ where: { id: userId } })
+    if (user?.role_id !== 1){
+      let message = `L'utilisateur ${user?.prenom} ${user?.prenom} ne possède pas les droits nécessaire`
+      res.status(UNAUTHORIZED.code).json(error(UNAUTHORIZED,message))
+    }else {
+      await Role.delete({ id: +id })
+      res.status(OK.code).json({ delete: 'OK' })
+      logger.info("Suppression effectué pour le role "+id)
+      log.info("Suppression effectué pour le role "+id)
+    }
   } catch (err) {
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     logger.error("Erreur lors de la suppresstion du role "+id)

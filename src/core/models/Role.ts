@@ -16,7 +16,7 @@ import {
     @PrimaryGeneratedColumn()
     id!: number
   
-    @Column({ nullable: false })
+    @Column({ nullable: false, unique: true })
     role!: string
   
     @CreateDateColumn()
