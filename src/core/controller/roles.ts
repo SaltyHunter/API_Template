@@ -44,19 +44,21 @@ roles.post('/', async (req: Request, res: Response) => {
     const { userId } = req.params
     const user = await Utilisateur.findOne({ where: { id: userId } })
     if (user?.role_id !== 1){
-      let message = `L'utilisateur ${user?.prenom} ${user?.prenom} ne possède pas les droits nécessaire`
+      let message = `L'utilisateur ${user?.prenom} ${user?.nom} ne possède pas les droits nécessaire`
       res.status(UNAUTHORIZED.code).json(error(UNAUTHORIZED,message))
+      logger.error(message)
+      log.error(message)
     }else {
       const { role } = req.body
       const roles = new Role()
       roles.role = role
-      console.log(roles.role)
       await roles.save()
       res.status(CREATED.code).json(success(roles))
       logger.info("Role "+roles.role+" créé")
       log.info("Role "+roles.role+" créé")
     }
   } catch (err) {
+    console.log(err)
     res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, err))
     logger.error(err)
     log.error(err)
@@ -68,8 +70,10 @@ roles.put('/:id', async (req: Request, res: Response) => {
   try {
     const user = await Utilisateur.findOne({ where: { id: userId } })
     if (user?.role_id !== 1){
-      let message = `L'utilisateur ${user?.prenom} ${user?.prenom} ne possède pas les droits nécessaire`
+      let message = `L'utilisateur ${user?.prenom} ${user?.nom} ne possède pas les droits nécessaire`
       res.status(UNAUTHORIZED.code).json(error(UNAUTHORIZED,message))
+      logger.error(message)
+      log.error(message)
     }else {
       const { role } = req.body
       await Role.update({ id: +id }, { role: role });

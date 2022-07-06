@@ -45,7 +45,7 @@ authenticate.post('/signup', async (req: Request, res: Response) => {
 })
 
 authenticate.post('/signin', async (req: Request, res: Response) => {
-  const auth = passport.authenticate('local', { session: false }, (errorMessage, user) => {
+  const auth = passport.authenticate('local', { session: true }, (errorMessage, user) => {
     try {
       if (errorMessage) {
         res.status(BAD_REQUEST.code).json(error(BAD_REQUEST, new Error(errorMessage)))

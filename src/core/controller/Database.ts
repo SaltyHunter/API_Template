@@ -44,7 +44,8 @@ export default class Database {
     // 'insert into role(id, role) values(1, Administrateur),(2, Utilisateur')'
     await createQueryBuilder().insert().into(Role).values([
       { id: 1, role: 'Administrateur' },
-      { id: 2, role: 'Utilisateur' }
+      { id: 2, role: 'Utilisateur' },
+      { id: 3, role: 'Invité' }
     ])
 
     return this._connection
