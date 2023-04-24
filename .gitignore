@@ -115,3 +115,5 @@ temp/
 .dist
 yarn-error.log
 yarn.lock
+
+*.pem

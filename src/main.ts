@@ -17,7 +17,7 @@ const main = async (): Promise<void> => {
 
     const port = argv[0] || (process.env.PORT as string)
     const host = argv[1] || (process.env.HOST as string)
-
+    
     const server = new Server(host, parseInt(port, 10))
     await server.run()
   } catch (err) {

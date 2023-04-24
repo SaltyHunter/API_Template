@@ -7,15 +7,22 @@ import api from '@/routes/api'
 import { factory } from '@/core/utils/log'
 import { getLogger } from 'log4js'
 import { transform } from '@/core/utils/utils'
+import https from 'https';
+import fs from 'fs';
 
 const file  = transform(__filename)
 const logger = getLogger(file)
 const log = factory.getLogger(file)
 
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('certificate.pem')
+};
+
 export default class Server {
   private _host: string
   private _port: number
-  private _app: Express | null = null
+  private _app?: Express 
 
   public constructor(host: string, port: number) {
     this._host = host
@@ -36,7 +43,6 @@ export default class Server {
     log.info('Connexion à la base de donnée établie')
 
     this._app = express()
-
     this._app.use(passport.initialize())
     this._app.use(bodyParser.json())
     this._app.use(bodyParser.urlencoded({ extended: false }))
@@ -45,9 +51,9 @@ export default class Server {
 
   public async run(): Promise<void> {
     await this._initialize()
-    this._app?.listen(this._port, () => {
+    https.createServer(options,this._app).listen(this._port, () => {
       logger.info(`Le serveur écoute sur : ${this._host}:${this._port}`)
       log.info(`Le serveur écoute sur : ${this._host}:${this._port}`)
-    })
+    });
   }
 }
