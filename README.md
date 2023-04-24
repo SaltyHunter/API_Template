@@ -1,5 +1,8 @@
 ## Template d'API Version 1.4.0
 
+# Génération de certificat SSL/TLS auto-signé :
+        
+        openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem
 
 # Installation
 
@@ -47,7 +50,7 @@ Envoie de mail lors de la création d'un utilisateur, et suppression d'un utilis
 
 # Authentification : 
 
-S'inscrire POST : http://localhost:8080/api/authenticate/signup
+S'inscrire POST : https://localhost:8080/api/authenticate/signup
 
     {
         "username": ,
@@ -58,7 +61,7 @@ S'inscrire POST : http://localhost:8080/api/authenticate/signup
         "passwordConfirmation":
     }
     
-Se connecter POST : http://localhost:8080/api/authenticate/signin
+Se connecter POST : https://localhost:8080/api/authenticate/signin
 
     {
         "username": ,
@@ -67,9 +70,9 @@ Se connecter POST : http://localhost:8080/api/authenticate/signin
 
 # Profil : 
 
-Consulter son profil GET : http://localhost:8080/api/${uuid}
+Consulter son profil GET : https://localhost:8080/api/${uuid}
 
-Modifier son profil PUT : http://localhost:8080/api/${uuid}
+Modifier son profil PUT : https://localhost:8080/api/${uuid}
 
     {
         "username": ,
@@ -85,39 +88,39 @@ Supprimer son profil DEL : http://localhost:8080/api/${uuid}
 
 # Role :
 
-Consulter les roles  GET_ALL : http://localhost:8080/api/roles/all
-Consulter un role  GET_ALL : http://localhost:8080/api/roles/${id}
+Consulter les roles  GET_ALL : https://localhost:8080/api/roles/all
+Consulter un role  GET_ALL : https://localhost:8080/api/roles/${id}
 
-Poster un role POST : http://localhost:8080/api/roles/${id}
+Poster un role POST : https://localhost:8080/api/roles/${id}
     {
         "role":
     }
 
-Poster un role PUT : http://localhost:8080/api/roles/${id}
+Poster un role PUT : https://localhost:8080/api/roles/${id}
 
     {
         "role":
     }
     
-Supprimer son template DELETE : http://localhost:8080/api/roles/${id}
+Supprimer son template DELETE : https://localhost:8080/api/roles/${id}
 
 
 
 # Template :
 
-Consulter ses templates  GET_ALL : http://localhost:8080/api/${uuid}/template
-Consulter un de ses templates  GET : http://localhost:8080/api/${uuid}/template/${id_template}
+Consulter ses templates  GET_ALL : https://localhost:8080/api/${uuid}/template
+Consulter un de ses templates  GET : https://localhost:8080/api/${uuid}/template/${id_template}
 
-Poster un template POST : http://localhost:8080/api/${uuid}/template
+Poster un template POST : https://localhost:8080/api/${uuid}/template
 
     {
         "name":
     }
 
-Modifier son template PUT : http://localhost:8080/api/${uuid}/template/${id_template}
+Modifier son template PUT : https://localhost:8080/api/${uuid}/template/${id_template}
 
     {
         "name":
     }
     
-Supprimer son template DELETE : http://localhost:8080/api/${uuid}/template/${id_template}
+Supprimer son template DELETE : https://localhost:8080/api/${uuid}/template/${id_template}
